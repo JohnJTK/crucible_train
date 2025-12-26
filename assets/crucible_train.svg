@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="CrucibleTrain logo">
+  <defs>
+    <linearGradient id="hex-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1020"/>
+      <stop offset="55%" stop-color="#0E2236"/>
+      <stop offset="100%" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="rim-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#2DD4BF"/>
+      <stop offset="100%" stop-color="#F59E0B"/>
+    </linearGradient>
+    <linearGradient id="rail-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94A3B8"/>
+      <stop offset="50%" stop-color="#E2E8F0"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="crucible-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0F172A"/>
+      <stop offset="100%" stop-color="#1F2937"/>
+    </linearGradient>
+    <radialGradient id="core-glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="1"/>
+      <stop offset="55%" stop-color="#F59E0B" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#F97316" stop-opacity="0.15"/>
+    </radialGradient>
+    <pattern id="diag-grid" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#0EA5A5" stroke-opacity="0.15" stroke-width="1"/>
+    </pattern>
+    <filter id="soft-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#020617" flood-opacity="0.6"/>
+    </filter>
+    <filter id="core-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="hex-clip">
+      <polygon points="100,10 180,55 180,145 100,190 20,145 20,55"/>
+    </clipPath>
+  </defs>
+
+  <g filter="url(#soft-shadow)">
+    <polygon points="100,10 180,55 180,145 100,190 20,145 20,55"
+             fill="url(#hex-gradient)" stroke="url(#rim-gradient)" stroke-width="3"/>
+  </g>
+
+  <g clip-path="url(#hex-clip)">
+    <rect x="0" y="0" width="200" height="200" fill="url(#diag-grid)"/>
+
+    <polygon points="100,28 160,62 160,138 100,172 40,138 40,62"
+             fill="none" stroke="#67E8F9" stroke-opacity="0.4" stroke-width="2"/>
+    <polygon points="100,40 148,68 148,132 100,160 52,132 52,68"
+             fill="none" stroke="#F59E0B" stroke-opacity="0.35" stroke-width="1.5"/>
+
+    <g opacity="0.9">
+      <line x1="55" y1="108" x2="145" y2="108" stroke="url(#rail-gradient)" stroke-width="4" stroke-linecap="round"/>
+      <line x1="55" y1="118" x2="145" y2="118" stroke="url(#rail-gradient)" stroke-width="4" stroke-linecap="round"/>
+
+      <g stroke="#CBD5F5" stroke-width="3" stroke-linecap="round" opacity="0.85">
+        <line x1="70" y1="106" x2="70" y2="120"/>
+        <line x1="85" y1="106" x2="85" y2="120"/>
+        <line x1="100" y1="106" x2="100" y2="120"/>
+        <line x1="115" y1="106" x2="115" y2="120"/>
+        <line x1="130" y1="106" x2="130" y2="120"/>
+      </g>
+
+      <circle cx="55" cy="113" r="5" fill="#38BDF8" stroke="#E2E8F0" stroke-width="1"/>
+      <circle cx="145" cy="113" r="5" fill="#38BDF8" stroke="#E2E8F0" stroke-width="1"/>
+    </g>
+
+    <g stroke="#94A3B8" stroke-width="2" fill="none" opacity="0.9">
+      <path d="M80 92 L100 72 L120 92"/>
+      <path d="M60 96 L80 92"/>
+      <path d="M140 96 L120 92"/>
+    </g>
+
+    <g>
+      <circle cx="100" cy="72" r="6" fill="#FCD34D" stroke="#F97316" stroke-width="1"/>
+      <circle cx="80" cy="92" r="4.5" fill="#FDBA74" stroke="#F97316" stroke-width="1"/>
+      <circle cx="120" cy="92" r="4.5" fill="#FDBA74" stroke="#F97316" stroke-width="1"/>
+      <circle cx="60" cy="96" r="4" fill="#38BDF8" stroke="#0EA5E9" stroke-width="1"/>
+      <circle cx="140" cy="96" r="4" fill="#38BDF8" stroke="#0EA5E9" stroke-width="1"/>
+    </g>
+
+    <g filter="url(#core-glow-filter)">
+      <path d="M70 126 Q100 150 130 126 L122 162 Q100 174 78 162 Z"
+            fill="url(#crucible-gradient)" stroke="#334155" stroke-width="2"/>
+      <ellipse cx="100" cy="128" rx="34" ry="10" fill="#0B1220" opacity="0.6"/>
+      <circle cx="100" cy="130" r="16" fill="url(#core-glow)"/>
+      <path d="M92 124 Q100 110 108 124" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+    </g>
+
+    <path d="M58 58 Q100 44 142 58" stroke="#38BDF8" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+    <path d="M52 150 Q100 164 148 150" stroke="#F59E0B" stroke-opacity="0.2" stroke-width="2" fill="none"/>
+  </g>
+</svg>
