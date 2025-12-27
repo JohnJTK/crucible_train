@@ -55,6 +55,41 @@ config = %Config{
 {:ok, result} = Train.main(config)
 ```
 
+## Training Stages
+
+This package provides Crucible stages for ML training workflows:
+
+| Stage | Name | Description |
+|-------|------|-------------|
+| `SupervisedTrain` | `:supervised_train` | Standard supervised learning with configurable optimizer/loss |
+| `DPOTrain` | `:dpo_train` | Direct Preference Optimization with beta parameter |
+| `RLTrain` | `:rl_train` | Reinforcement Learning (PPO, DQN, A2C, REINFORCE) |
+| `Distillation` | `:distillation` | Knowledge Distillation with temperature/alpha |
+
+All stages implement the `Crucible.Stage` behaviour with full `describe/1` schemas for introspection.
+
+```elixir
+# View stage schema
+schema = CrucibleTrain.Stages.SupervisedTrain.describe(%{})
+# => %{
+#      name: :supervised_train,
+#      description: "Runs supervised learning training...",
+#      required: [],
+#      optional: [:epochs, :batch_size, :learning_rate, :optimizer, :loss_fn, :metrics],
+#      types: %{epochs: :integer, batch_size: :integer, ...}
+#    }
+```
+
+Use in Crucible pipelines:
+
+```elixir
+alias CrucibleIR.StageDef
+
+stages = [
+  %StageDef{name: :supervised_train, options: %{epochs: 3, batch_size: 32}}
+]
+```
+
 ## Logging Backends
 
 CrucibleTrain supports multiple logging backends for experiment tracking:

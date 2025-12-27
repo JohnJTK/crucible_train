@@ -1,9 +1,11 @@
 # Changelog
 
-## 0.2.0 (2025-12-26)
+## 0.2.0 (2025-12-27)
 
 ### Added
 
+- Conformance tests for all training stages (`test/crucible_train/stages/conformance_test.exs`)
+- README documentation for stage contracts and describe/1 schemas
 - W&B (Weights & Biases) logger backend via HTTP API
 - Neptune.ai logger backend via HTTP API
 - **Rate limiting for cloud loggers** with configurable settings:
@@ -25,9 +27,19 @@
 
 ### Changed
 
+- Updated `crucible_framework` to ~> 0.5.0 (required describe/1 contract)
 - Added `req` HTTP client dependency (~> 0.5)
 - Updated logging module with wandb/neptune resolution
 - Updated `crucible_ir` to ~> 0.2.1
+
+### Stages
+
+All stages implement the canonical `describe/1` schema:
+
+- **SupervisedTrain** - Standard supervised learning with configurable optimizer/loss
+- **DPOTrain** - Direct Preference Optimization with beta parameter
+- **RLTrain** - Reinforcement learning with algorithm selection (PPO, DQN, A2C, REINFORCE)
+- **Distillation** - Knowledge distillation with temperature/alpha
 
 ## 0.1.1 (2025-12-25)
 

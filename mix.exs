@@ -46,7 +46,7 @@ defmodule CrucibleTrain.MixProject do
       {:telemetry, "~> 1.2"},
       {:table_rex, "~> 4.0"},
       {:ecto_sql, "~> 3.11"},
-      {:crucible_framework, "~> 0.4.1"},
+      {:crucible_framework, "~> 0.5.0"},
       {:crucible_ir, "~> 0.2.1"},
       {:mox, "~> 1.1", only: :test},
       {:stream_data, "~> 1.0", only: [:dev, :test]},
@@ -71,7 +71,12 @@ defmodule CrucibleTrain.MixProject do
       source_ref: "v#{@version}",
       source_url: @source_url,
       homepage_url: @source_url,
-      extras: ["README.md", "CHANGELOG.md", "LICENSE"],
+      extras: [
+        "README.md",
+        "CHANGELOG.md",
+        "LICENSE",
+        {"examples/README.md", [title: "Examples", filename: "examples"]}
+      ],
       assets: %{"assets" => "assets"},
       logo: "assets/crucible_train.svg",
       groups_for_modules: [
@@ -107,7 +112,7 @@ defmodule CrucibleTrain.MixProject do
     [
       name: "crucible_train",
       description: "Unified ML training infrastructure for Elixir/BEAM",
-      files: ~w(README.md CHANGELOG.md mix.exs LICENSE lib assets),
+      files: ~w(README.md CHANGELOG.md mix.exs LICENSE lib assets examples/README.md),
       licenses: ["MIT"],
       links: %{
         "GitHub" => @source_url,
