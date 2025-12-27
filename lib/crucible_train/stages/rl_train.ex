@@ -10,6 +10,24 @@ defmodule CrucibleTrain.Stages.RLTrain do
   end
 
   @impl true
+  def describe(_opts) do
+    %{
+      name: :rl_train,
+      description: "Runs reinforcement learning training using CrucibleTrain.RL",
+      required: [],
+      optional: [:algorithm, :gamma, :epsilon, :learning_rate, :episodes, :reward_fn],
+      types: %{
+        algorithm: {:enum, [:ppo, :dqn, :a2c, :reinforce]},
+        gamma: :float,
+        epsilon: :float,
+        learning_rate: :float,
+        episodes: :integer,
+        reward_fn: {:function, 1}
+      }
+    }
+  end
+
+  @impl true
   def run(context, opts) do
     if Code.ensure_loaded?(Crucible.Context) do
       case Train.main(opts) do

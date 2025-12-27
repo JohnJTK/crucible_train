@@ -97,3 +97,5 @@ artifacts/
 repomix*.xml
 
 runs/
+/wandb/
+/neptune-client/

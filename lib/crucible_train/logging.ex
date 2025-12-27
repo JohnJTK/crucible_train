@@ -3,7 +3,13 @@ defmodule CrucibleTrain.Logging do
   Convenience helpers for ML logging backends.
   """
 
-  alias CrucibleTrain.Logging.{JsonLogger, MultiplexLogger, PrettyPrintLogger}
+  alias CrucibleTrain.Logging.{
+    JsonLogger,
+    MultiplexLogger,
+    NeptuneLogger,
+    PrettyPrintLogger,
+    WandbLogger
+  }
 
   @type logger :: {module(), term()}
 
@@ -83,5 +89,7 @@ defmodule CrucibleTrain.Logging do
   defp resolve_logger_module(:json), do: JsonLogger
   defp resolve_logger_module(:pretty), do: PrettyPrintLogger
   defp resolve_logger_module(:multiplex), do: MultiplexLogger
+  defp resolve_logger_module(:wandb), do: WandbLogger
+  defp resolve_logger_module(:neptune), do: NeptuneLogger
   defp resolve_logger_module(module) when is_atom(module), do: module
 end

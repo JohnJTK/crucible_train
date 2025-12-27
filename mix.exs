@@ -1,7 +1,7 @@
 defmodule CrucibleTrain.MixProject do
   use Mix.Project
 
-  @version "0.1.1"
+  @version "0.2.0"
   @source_url "https://github.com/North-Shore-AI/crucible_train"
 
   def project do
@@ -42,11 +42,12 @@ defmodule CrucibleTrain.MixProject do
     [
       {:chz_ex, "~> 0.1.2"},
       {:jason, "~> 1.4"},
+      {:req, "~> 0.5"},
       {:telemetry, "~> 1.2"},
       {:table_rex, "~> 4.0"},
       {:ecto_sql, "~> 3.11"},
-      {:crucible_framework, "~> 0.4.0"},
-      {:crucible_ir, "~> 0.2.0"},
+      {:crucible_framework, "~> 0.4.1"},
+      {:crucible_ir, "~> 0.2.1"},
       {:mox, "~> 1.1", only: :test},
       {:stream_data, "~> 1.0", only: [:dev, :test]},
       {:excoveralls, "~> 0.18", only: :test},

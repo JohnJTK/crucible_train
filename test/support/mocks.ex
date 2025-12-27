@@ -14,6 +14,8 @@ Mox.defmock(CrucibleTrain.Completers.MessageCompleterMock,
   for: CrucibleTrain.Completers.MessageCompleter
 )
 
+Mox.defmock(CrucibleTrain.HTTPClientMock, for: CrucibleTrain.HTTPClient)
+
 Mox.defmock(CrucibleTrain.Logging.LoggerMock, for: CrucibleTrain.Logging.Logger)
 Mox.defmock(CrucibleTrain.Eval.EvaluatorMock, for: CrucibleTrain.Eval.Evaluator)
 

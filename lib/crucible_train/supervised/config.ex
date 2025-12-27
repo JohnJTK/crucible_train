@@ -6,7 +6,8 @@ defmodule CrucibleTrain.Supervised.Config do
   alias CrucibleTrain.Ports
   alias CrucibleTrain.Supervised.Dataset
 
-  @type lr_schedule :: :linear | :cosine | :constant | String.t()
+  @type lr_schedule ::
+          :linear | :cosine | :constant | String.t() | {:warmup, non_neg_integer(), lr_schedule()}
 
   @type t :: %__MODULE__{
           training_client: term() | nil,

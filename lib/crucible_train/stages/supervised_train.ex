@@ -10,6 +10,24 @@ defmodule CrucibleTrain.Stages.SupervisedTrain do
   end
 
   @impl true
+  def describe(_opts) do
+    %{
+      name: :supervised_train,
+      description: "Runs supervised learning training using CrucibleTrain.Supervised",
+      required: [],
+      optional: [:epochs, :batch_size, :learning_rate, :optimizer, :loss_fn, :metrics],
+      types: %{
+        epochs: :integer,
+        batch_size: :integer,
+        learning_rate: :float,
+        optimizer: :atom,
+        loss_fn: :atom,
+        metrics: {:list, :atom}
+      }
+    }
+  end
+
+  @impl true
   def run(context, opts) do
     if Code.ensure_loaded?(Crucible.Context) do
       config = build_config(opts, context)

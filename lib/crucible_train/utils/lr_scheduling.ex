@@ -3,7 +3,23 @@ defmodule CrucibleTrain.Utils.LRScheduling do
   Learning rate schedule helpers.
   """
 
-  @type lr_schedule :: :linear | :cosine | :constant | String.t()
+  @type lr_schedule ::
+          :linear | :cosine | :constant | String.t() | {:warmup, non_neg_integer(), lr_schedule()}
+
+  @spec compute_schedule_lr_multiplier(
+          {:warmup, non_neg_integer(), lr_schedule()},
+          non_neg_integer(),
+          pos_integer()
+        ) :: float()
+  def compute_schedule_lr_multiplier({:warmup, warmup_steps, schedule}, step, total_steps) do
+    if step < warmup_steps do
+      step / warmup_steps
+    else
+      adjusted_step = step - warmup_steps
+      adjusted_total = max(total_steps - warmup_steps, 1)
+      compute_schedule_lr_multiplier(schedule, adjusted_step, adjusted_total)
+    end
+  end
 
   @spec compute_schedule_lr_multiplier(lr_schedule(), non_neg_integer(), pos_integer()) :: float()
   def compute_schedule_lr_multiplier(lr_schedule, step, total_steps) do

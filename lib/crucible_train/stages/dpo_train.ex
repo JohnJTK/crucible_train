@@ -10,6 +10,23 @@ defmodule CrucibleTrain.Stages.DPOTrain do
   end
 
   @impl true
+  def describe(_opts) do
+    %{
+      name: :dpo_train,
+      description: "Runs Direct Preference Optimization training using CrucibleTrain.Preference",
+      required: [],
+      optional: [:beta, :epochs, :batch_size, :learning_rate, :reference_model],
+      types: %{
+        beta: :float,
+        epochs: :integer,
+        batch_size: :integer,
+        learning_rate: :float,
+        reference_model: :string
+      }
+    }
+  end
+
+  @impl true
   def run(context, opts) do
     if Code.ensure_loaded?(Crucible.Context) do
       case TrainDPO.main(opts) do

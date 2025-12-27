@@ -10,6 +10,23 @@ defmodule CrucibleTrain.Stages.Distillation do
   end
 
   @impl true
+  def describe(_opts) do
+    %{
+      name: :distillation,
+      description: "Runs knowledge distillation training using CrucibleTrain.Distillation",
+      required: [],
+      optional: [:teacher_model, :student_model, :temperature, :alpha, :epochs],
+      types: %{
+        teacher_model: :string,
+        student_model: :string,
+        temperature: :float,
+        alpha: :float,
+        epochs: :integer
+      }
+    }
+  end
+
+  @impl true
   def run(context, opts) do
     if Code.ensure_loaded?(Crucible.Context) do
       case TrainOnPolicy.main(opts) do
