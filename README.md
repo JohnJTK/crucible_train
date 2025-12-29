@@ -237,7 +237,7 @@ config = %Config{
 
 ## Examples
 
-See the [`examples/`](examples/) directory for runnable demos:
+See the `examples/` directory for runnable demos:
 
 ```bash
 # Run all local examples

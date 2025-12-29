@@ -8,6 +8,8 @@ defmodule CrucibleTrain.Renderers.Registry do
   @renderers %{
     "llama3" => CrucibleTrain.Renderers.Llama3,
     "qwen3" => CrucibleTrain.Renderers.Qwen3,
+    "qwen3_vl" => CrucibleTrain.Renderers.Qwen3VL,
+    "qwen3_vl_instruct" => CrucibleTrain.Renderers.Qwen3VLInstruct,
     "qwen3_disable_thinking" => CrucibleTrain.Renderers.Qwen3DisableThinking,
     "qwen3_instruct" => CrucibleTrain.Renderers.Qwen3Instruct,
     "deepseekv3" => CrucibleTrain.Renderers.DeepSeekV3,
@@ -58,28 +60,30 @@ defmodule CrucibleTrain.Renderers.Registry do
   @spec list_renderers() :: [String.t()]
   def list_renderers, do: Map.keys(@renderers)
 
+  # Pattern list for model name matching: {patterns_to_match, renderer_name}
+  # Order matters - more specific patterns (e.g., qwen3-vl) must come before general ones (qwen3)
+  @model_patterns [
+    {["llama-3", "llama3"], "llama3"},
+    {["qwen3-vl", "qwen3_vl", "qwen3vl"], "qwen3_vl"},
+    {["qwen3"], "qwen3"},
+    {["deepseek"], "deepseekv3"},
+    {["kimi"], "kimi_k2"},
+    {["gpt-oss", "gpt_oss"], "gpt_oss_medium_reasoning"}
+  ]
+
   defp get_renderer_for_model(model_name) do
     downcased = String.downcase(model_name)
 
-    cond do
-      String.contains?(downcased, "llama-3") or String.contains?(downcased, "llama3") ->
-        lookup("llama3") |> normalize_lookup()
-
-      String.contains?(downcased, "qwen3") ->
-        lookup("qwen3") |> normalize_lookup()
-
-      String.contains?(downcased, "deepseek") ->
-        lookup("deepseekv3") |> normalize_lookup()
-
-      String.contains?(downcased, "kimi") ->
-        lookup("kimi_k2") |> normalize_lookup()
-
-      String.contains?(downcased, "gpt-oss") or String.contains?(downcased, "gpt_oss") ->
-        lookup("gpt_oss_medium_reasoning") |> normalize_lookup()
-
-      true ->
-        {:error, {:unknown_renderer, model_name}}
+    case find_matching_renderer(downcased) do
+      {:ok, renderer_name} -> lookup(renderer_name) |> normalize_lookup()
+      :not_found -> {:error, {:unknown_renderer, model_name}}
     end
+  end
+
+  defp find_matching_renderer(downcased) do
+    Enum.find_value(@model_patterns, :not_found, fn {patterns, renderer_name} ->
+      if Enum.any?(patterns, &String.contains?(downcased, &1)), do: {:ok, renderer_name}
+    end)
   end
 
   defp normalize_lookup({:ok, {module, _opts}}), do: {:ok, module}
