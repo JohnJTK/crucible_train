@@ -9,9 +9,23 @@ defmodule CrucibleTrain.Ports.TrainingClient do
   @type adapter_opts :: keyword()
   @type session :: term()
   @type future :: term()
+  @type loss_fn :: atom() | String.t()
+  @type loss_fn_config :: map() | nil
+  @type forward_backward_opts :: [
+          loss_fn: loss_fn(),
+          loss_fn_config: loss_fn_config()
+        ]
 
   @callback start_session(adapter_opts(), config :: map()) :: {:ok, session()} | {:error, term()}
-  @callback forward_backward(adapter_opts(), session(), [Datum.t()]) :: future()
+  @callback forward_backward(adapter_opts(), session(), [Datum.t()], forward_backward_opts()) ::
+              future()
+  @callback forward_backward_custom(
+              adapter_opts(),
+              session(),
+              [Datum.t()],
+              (list(Datum.t()), list(term()) -> {term(), map()}),
+              keyword()
+            ) :: future() | {:error, term()}
   @callback optim_step(adapter_opts(), session(), learning_rate :: float()) :: future()
   @callback await(adapter_opts(), future()) :: {:ok, map()} | {:error, term()}
   @callback save_checkpoint(adapter_opts(), session(), path :: String.t()) ::
@@ -28,8 +42,25 @@ defmodule CrucibleTrain.Ports.TrainingClient do
 
   @spec forward_backward(Ports.t(), session(), [Datum.t()]) :: future()
   def forward_backward(%Ports{} = ports, session, datums) do
+    forward_backward(ports, session, datums, [])
+  end
+
+  @spec forward_backward(Ports.t(), session(), [Datum.t()], forward_backward_opts()) :: future()
+  def forward_backward(%Ports{} = ports, session, datums, opts) do
     {module, adapter_opts} = Ports.resolve(ports, :training_client)
-    module.forward_backward(adapter_opts, session, datums)
+    module.forward_backward(adapter_opts, session, datums, opts)
+  end
+
+  @spec forward_backward_custom(
+          Ports.t(),
+          session(),
+          [Datum.t()],
+          (list(Datum.t()), list(term()) -> {term(), map()}),
+          keyword()
+        ) :: future() | {:error, term()}
+  def forward_backward_custom(%Ports{} = ports, session, datums, loss_fn, opts \\ []) do
+    {module, adapter_opts} = Ports.resolve(ports, :training_client)
+    module.forward_backward_custom(adapter_opts, session, datums, loss_fn, opts)
   end
 
   @spec optim_step(Ports.t(), session(), float()) :: future()

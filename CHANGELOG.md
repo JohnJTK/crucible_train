@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0 (unreleased)
+
+- Added TrainingClient forward_backward_custom coverage in noop adapter tests.
+- Added loss_fn_config support in the TrainingClient port and noop adapter.
+- Added SamplingClient port, noop adapter, and tests.
+- Added PortsTokenCompleter for port-backed sampling in RL workflows.
+- Switched crucible_framework/crucible_ir to path dependencies, moved preferred_cli_env to cli, and added castore for test warnings.
+
 ## 0.2.0 (2025-12-27)
 
 ### Added

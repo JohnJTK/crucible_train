@@ -128,7 +128,7 @@ defmodule CrucibleTrain.RL.Metrics do
 
     updated_data =
       MiscUtils.safezip([data, logprob_diffs, float_masks])
-      |> Enum.map(fn {datum, diffs, mask} ->
+      |> Enum.map(fn {%Datum{} = datum, diffs, mask} ->
         kl_advantages =
           diffs
           |> Enum.zip(mask)

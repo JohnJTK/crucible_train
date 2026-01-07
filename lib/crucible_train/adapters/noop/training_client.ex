@@ -15,7 +15,10 @@ defmodule CrucibleTrain.Adapters.Noop.TrainingClient do
   def start_session(_opts, _config), do: {:error, error()}
 
   @impl true
-  def forward_backward(_opts, _session, _datums), do: {:error, error()}
+  def forward_backward(_opts, _session, _datums, _opts_kw), do: {:error, error()}
+
+  @impl true
+  def forward_backward_custom(_opts, _session, _datums, _loss_fn, _opts_kw), do: {:error, error()}
 
   @impl true
   def optim_step(_opts, _session, _learning_rate), do: {:error, error()}

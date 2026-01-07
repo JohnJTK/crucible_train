@@ -8,6 +8,7 @@ defmodule CrucibleTrain.Ports do
   @type adapter_ref :: {module(), keyword()}
   @type port_key ::
           :training_client
+          | :sampling_client
           | :vector_store
           | :embedding_client
           | :llm_client
@@ -17,6 +18,7 @@ defmodule CrucibleTrain.Ports do
 
   @type t :: %__MODULE__{
           training_client: adapter_ref(),
+          sampling_client: adapter_ref(),
           vector_store: adapter_ref(),
           embedding_client: adapter_ref(),
           llm_client: adapter_ref(),
@@ -27,6 +29,7 @@ defmodule CrucibleTrain.Ports do
 
   @default_ports %{
     training_client: {Adapters.Noop.TrainingClient, []},
+    sampling_client: {Adapters.Noop.SamplingClient, []},
     vector_store: {Adapters.Noop.VectorStore, []},
     embedding_client: {Adapters.Noop.EmbeddingClient, []},
     llm_client: {Adapters.Noop.LLMClient, []},
@@ -37,6 +40,7 @@ defmodule CrucibleTrain.Ports do
 
   @port_behaviours %{
     training_client: CrucibleTrain.Ports.TrainingClient,
+    sampling_client: CrucibleTrain.Ports.SamplingClient,
     vector_store: CrucibleTrain.Ports.VectorStore,
     embedding_client: CrucibleTrain.Ports.EmbeddingClient,
     llm_client: CrucibleTrain.Ports.LLMClient,

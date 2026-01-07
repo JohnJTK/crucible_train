@@ -32,7 +32,7 @@ Add to your `mix.exs`:
 ```elixir
 def deps do
   [
-    {:crucible_train, "~> 0.2.0"}
+    {:crucible_train, "~> 0.3.0"}
   ]
 end
 ```

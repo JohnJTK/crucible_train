@@ -5,6 +5,7 @@ Mox.defmock(CrucibleTrain.Ports.DatasetStoreMock, for: CrucibleTrain.Ports.Datas
 Mox.defmock(CrucibleTrain.Ports.HubClientMock, for: CrucibleTrain.Ports.HubClient)
 Mox.defmock(CrucibleTrain.Ports.VectorStoreMock, for: CrucibleTrain.Ports.VectorStore)
 Mox.defmock(CrucibleTrain.Ports.EmbeddingClientMock, for: CrucibleTrain.Ports.EmbeddingClient)
+Mox.defmock(CrucibleTrain.Ports.SamplingClientMock, for: CrucibleTrain.Ports.SamplingClient)
 
 Mox.defmock(CrucibleTrain.Completers.TokenCompleterMock,
   for: CrucibleTrain.Completers.TokenCompleter

@@ -104,6 +104,12 @@ defmodule CrucibleTrain.RL.ProblemGroupBuilder do
 
   @behaviour CrucibleTrain.RL.EnvGroupBuilder
 
+  @type t :: %__MODULE__{
+          env_thunk: (-> struct()),
+          num_envs: non_neg_integer(),
+          dataset_name: String.t()
+        }
+
   defstruct [:env_thunk, :num_envs, dataset_name: "problems"]
 
   @spec make_envs(struct()) :: [struct()]
